@@ -34,8 +34,33 @@
 /* Encoder Configuration */
 #define ENCODER_DEFAULT_POS 0x3
 
-/* Enable caps-lock LED*/
-#define CAPS_LOCK_LED_INDEX 61
+/* Enable Caps Lock LED*/
+// #define CAPS_LOCK_LED_INDEX 61
+#define CAPS_LOCK_LED_INDEX 18
 
-/* Enable NUM_LOCK_LED_INDEX */
+/* Enable Num Lock LED */
 // #define NUM_LOCK_LED_INDEX 37
+#define NUM_LOCK_LED_INDEX 17
+
+/* Enable Scroll Lock LED */
+// #define SCROLL_LOCK_LED_INDEX 14
+#define SCROLL_LOCK_LED_INDEX 19
+
+/* Enable Layer LED */
+#define LAYER_LED_INDEX 16
+
+/* Toggle indicators together with RM_TOGG */
+// #define INDICATORS_TOGGLE_ALL
+
+/* Default RGB Settings */
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE // Default mode 
+#define RGB_MATRIX_DEFAULT_HUE 0 // Default hue
+#define RGB_MATRIX_DEFAULT_SAT 0 // Default saturation
+#define RGB_MATRIX_DEFAULT_VAL 80 // Default brightness, 16 per step
+#define RGB_MATRIX_DEFAULT_SPD 32 // Default effect speed, 16 per step
+
+// Reactive effects respond to key releases (instead of key presses)
+#define RGB_MATRIX_KEYRELEASES
+
+/* Force NKRO on by default, can still be turned off with FN + N */
+#define FORCE_NKRO
