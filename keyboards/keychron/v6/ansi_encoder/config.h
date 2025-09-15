@@ -67,4 +67,4 @@
 #define RGB_MATRIX_KEYRELEASES
 
 /* Force NKRO on by default, can still be turned off with FN + N */
-#define FORCE_NKRO
+#define NKRO_DEFAULT_ON true
