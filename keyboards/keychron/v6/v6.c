@@ -52,13 +52,13 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().caps_lock) {
         RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb.r, rgb.g, rgb.b);
     } else {
-#		if !defined(INDICATORS_OFF_MODE)
+#		if defined(INDICATORS_INHERIT_MODE)
         if (!rgb_matrix_get_flags()) {
             RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 0, 0, 0);
         }
-#		else // INDICATORS_OFF_MODE
+#		else // INDICATORS_INHERIT_MODE
 		RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 0, 0, 0);
-#		endif // INDICATORS_OFF_MODE
+#		endif // INDICATORS_INHERIT_MODE
     }
 #    endif // CAPS_LOCK_LED_INDEX
 
@@ -67,13 +67,13 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().num_lock) {
         RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb.r, rgb.g, rgb.b);
     } else {
-#		if !defined(INDICATORS_OFF_MODE)
+#		if defined(INDICATORS_INHERIT_MODE)
         if (!rgb_matrix_get_flags()) {
             RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, 0, 0, 0);
         }
-#		else // INDICATORS_OFF_MODE
+#		else // INDICATORS_INHERIT_MODE
 		RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, 0, 0, 0);
-#		endif // INDICATORS_OFF_MODE
+#		endif // INDICATORS_INHERIT_MODE
     }
 #    endif // NUM_LOCK_LED_INDEX
 
@@ -82,13 +82,13 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
     if (host_keyboard_led_state().scroll_lock) {
 		RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb.r, rgb.g, rgb.b);
 	} else {
-#		if !defined(INDICATORS_OFF_MODE)
+#		if defined(INDICATORS_INHERIT_MODE)
 		if (!rgb_matrix_get_flags()) {
 			RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, 0, 0, 0);
 		}
-#		else // INDICATORS_OFF_MODE
+#		else // INDICATORS_INHERIT_MODE
 		RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, 0, 0, 0);
-#		endif // INDICATORS_OFF_MODE
+#		endif // INDICATORS_INHERIT_MODE
 	}
 #    endif // SCROLL_LOCK_LED_INDEX
 

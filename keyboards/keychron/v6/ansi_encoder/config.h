@@ -52,9 +52,9 @@
 /* Toggle indicators together with RM_TOGG */
 // #define INDICATORS_TOGGLE_ALL
 
-/* If commented out, when indicators are turned off they will inherit the color of the current RGB mode. 
-	If turned on, when indicators are turned off they will always be off */
-// #define INDICATORS_OFF_MODE
+/* If turned on, when indicators are turned off they will inherit the color of the current RGB mode.
+    If turned off, when indicators are turned off they will always be off */
+#define INDICATORS_INHERIT_MODE
 
 /* Default RGB Settings */
 #define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE // Default mode 
