@@ -15,6 +15,7 @@
  */
 
 #include "quantum.h"
+#include "custom_functions.h"
 
 #ifdef DIP_SWITCH_ENABLE
 
@@ -70,69 +71,31 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
 	// Set indicator color to layer color
 	RGB get_layer_color(void);
 	RGB rgb = get_layer_color();
-	
-    // RGB_MATRIX_INDICATOR_SET_COLOR(index, red, green, blue);
-	
+
 	// Set Caps Lock indicator color
-#    if defined(CAPS_LOCK_LED_INDEX)
-    if (host_keyboard_led_state().caps_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, rgb.r, rgb.g, rgb.b);
-    } else {
-#		if defined(INDICATORS_INHERIT_MODE)
-        if (!rgb_matrix_get_flags()) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 0, 0, 0);
-        }
-#		else // INDICATORS_INHERIT_MODE
-		RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 0, 0, 0);
-#		endif // INDICATORS_INHERIT_MODE
-    }
-#    endif // CAPS_LOCK_LED_INDEX
+	#if defined(CAPS_LOCK_LED_INDEX)
+	set_caps_lock_indicator(rgb, led_min, led_max);
+	#endif // CAPS_LOCK_LED_INDEX
 
 	// Set Num Lock indicator color
-#    if defined(NUM_LOCK_LED_INDEX)
-    if (host_keyboard_led_state().num_lock) {
-        RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, rgb.r, rgb.g, rgb.b);
-    } else {
-#		if defined(INDICATORS_INHERIT_MODE)
-        if (!rgb_matrix_get_flags()) {
-            RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, 0, 0, 0);
-        }
-#		else // INDICATORS_INHERIT_MODE
-		RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, 0, 0, 0);
-#		endif // INDICATORS_INHERIT_MODE
-    }
-#    endif // NUM_LOCK_LED_INDEX
+	#if defined(NUM_LOCK_LED_INDEX)
+	set_num_lock_indicator(rgb, led_min, led_max);
+	#endif // NUM_LOCK_LED_INDEX
 
 	// Set Scroll Lock indicator color
-#    if defined(SCROLL_LOCK_LED_INDEX)
-    if (host_keyboard_led_state().scroll_lock) {
-		RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, rgb.r, rgb.g, rgb.b);
-	} else {
-#		if defined(INDICATORS_INHERIT_MODE)
-		if (!rgb_matrix_get_flags()) {
-			RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, 0, 0, 0);
-		}
-#		else // INDICATORS_INHERIT_MODE
-		RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, 0, 0, 0);
-#		endif // INDICATORS_INHERIT_MODE
-	}
-#    endif // SCROLL_LOCK_LED_INDEX
+	#if defined(SCROLL_LOCK_LED_INDEX)
+	set_scroll_lock_indicator(rgb, led_min, led_max);
+	#endif // SCROLL_LOCK_LED_INDEX
 
 	// Set layer indicator color
-#	 if defined(LAYER_LED_INDEX)
-	RGB_MATRIX_INDICATOR_SET_COLOR(LAYER_LED_INDEX, rgb.r, rgb.g, rgb.b);
-#	 endif // LAYER_LED_INDEX
+	#if defined(LAYER_LED_INDEX)
+	set_layer_indicator(rgb, led_min, led_max);
+	#endif // LAYER_LED_INDEX
 
 	// Turn off indicators when RGB is turned off
-#	 if defined(INDICATORS_TOGGLE_ALL)
-	if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
-		RGB_MATRIX_INDICATOR_SET_COLOR(CAPS_LOCK_LED_INDEX, 0, 0, 0);
-		RGB_MATRIX_INDICATOR_SET_COLOR(NUM_LOCK_LED_INDEX, 0, 0, 0);
-		RGB_MATRIX_INDICATOR_SET_COLOR(SCROLL_LOCK_LED_INDEX, 0, 0, 0);
-		RGB_MATRIX_INDICATOR_SET_COLOR(LAYER_LED_INDEX, 0, 0, 0);
-		return true;
-	}
-#	 endif // INDICATORS_TOGGLE_ALL
+	#if defined(INDICATORS_TOGGLE_ALL)
+	set_indicator_off(led_min, led_max);
+	#endif // INDICATORS_TOGGLE_ALL
 
     return true;
 }
