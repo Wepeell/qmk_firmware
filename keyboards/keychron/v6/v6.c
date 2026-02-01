@@ -17,6 +17,9 @@
 #include "quantum.h"
 #include "custom_functions.h"
 
+// Declare variable for DIP switch layer detection
+static bool win_mode = false;
+
 #ifdef DIP_SWITCH_ENABLE
 
 bool dip_switch_update_kb(uint8_t index, bool active) {
@@ -30,6 +33,14 @@ bool dip_switch_update_kb(uint8_t index, bool active) {
         default_layer_set(1UL << (active ? 2 : 0));
 #    endif
     }
+
+	// Detect DIP switch in Mac or Windows mode
+	if (index == 0 && active) {
+		win_mode = true;
+	} else {
+		win_mode = false;
+	}
+
     return true;
 }
 
@@ -68,9 +79,10 @@ bool rgb_matrix_indicators_advanced_kb(uint8_t led_min, uint8_t led_max) {
         return false;
     }
 
-	// Set indicator color to layer color
-	RGB get_layer_color(void);
-	RGB rgb = get_layer_color();
+	// Get layer color
+	#if defined(CAPS_LOCK_LED_INDEX) || defined(NUM_LOCK_LED_INDEX) || defined(SCROLL_LOCK_LED_INDEX) || defined(LAYER_LED_INDEX) || defined(INDICATORS_TOGGLE_ALL)
+	RGB rgb = get_layer_color(win_mode);
+	#endif // Get layer color
 
 	// Set Caps Lock indicator color
 	#if defined(CAPS_LOCK_LED_INDEX)
