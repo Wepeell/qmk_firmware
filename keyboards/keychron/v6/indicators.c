@@ -72,3 +72,58 @@ void set_indicator_off(uint8_t led_min, uint8_t led_max) {
 	}
 }
 #endif // INDICATORS_TOGGLE_ALL
+
+// Get layer color
+#if defined(CAPS_LOCK_LED_INDEX) || defined(NUM_LOCK_LED_INDEX) || defined(SCROLL_LOCK_LED_INDEX) || defined(LAYER_LED_INDEX) || defined(INDICATORS_TOGGLE_ALL)
+RGB get_layer_color(bool win_mode) {
+	// Declare color variables
+	HSV hsv;
+	RGB rgb;
+
+	// Set the different layer colors
+	HSV mac_base_hsv = {85, 255, 255};	// Layer 0 MAC Green
+	HSV mac_fn_hsv = {0, 255, 255};		// Layer 1 MAC Function Red
+	HSV win_base_hsv = {170, 255, 255};	// Layer 2 Windows Blue
+	HSV win_fn_hsv = {234, 255, 255};	// Layer 3 Windows Function Pink
+
+	// Set layer name to index
+	#define MAC_BASE 0
+	#define MAC_FN   1
+	#define WIN_BASE 2
+	#define WIN_FN   3
+
+	// Set HSV color per layer
+	uint8_t current_layer = get_highest_layer(layer_state);
+	switch (current_layer) {
+		case MAC_BASE:
+			if (!win_mode) {
+				hsv = mac_base_hsv; // Layer 0
+				break;
+			} else {
+				// Fall to next case
+			}
+		case MAC_FN:
+			hsv = mac_fn_hsv; // Layer 1
+			break;
+		case WIN_BASE:
+			hsv = win_base_hsv; // Layer 2
+			break;
+		case WIN_FN:
+			hsv = win_fn_hsv; // Layer 3
+			break;
+		default:
+			break;
+	}
+
+	// Set HSV brightness
+	if (hsv.v != rgb_matrix_get_val()) {
+		hsv.v = rgb_matrix_get_val();
+	}
+
+	// Convert to RGB
+	rgb = hsv_to_rgb(hsv);
+
+	// Return RGB
+	return rgb;
+}
+#endif // Get layer color
