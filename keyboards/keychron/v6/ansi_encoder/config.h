@@ -34,30 +34,32 @@
 /* Encoder Configuration */
 #define ENCODER_DEFAULT_POS 0x3
 
-/* Enable Caps Lock LED*/
+// Custom settings
+
+// Enable Caps Lock LED
 // #define CAPS_LOCK_LED_INDEX 61
 #define CAPS_LOCK_LED_INDEX 18
 
-/* Enable Num Lock LED */
+// Enable Num Lock LED
 // #define NUM_LOCK_LED_INDEX 37
 #define NUM_LOCK_LED_INDEX 17
 
-/* Enable Scroll Lock LED */
+// Enable Scroll Lock LED
 // #define SCROLL_LOCK_LED_INDEX 14
 #define SCROLL_LOCK_LED_INDEX 19
 
 /* Enable Layer LED */
 #define LAYER_LED_INDEX 16
 
-/* Toggle indicators together with RM_TOGG */
+// Toggle indicators off together with RM_TOGG
 // #define INDICATORS_TOGGLE_ALL
 
-/* If turned on, when indicators are turned off they will inherit the color of the current RGB mode.
-    If turned off, when indicators are turned off they will always be off */
+// If turned on, when indicators are turned off they will inherit the color of the current RGB mode.
+// If turned off, when indicators are turned off they will always be off
 #define INDICATORS_INHERIT_MODE
 
-/* Default RGB Settings */
-#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE // Default mode 
+// Default RGB Settings
+#define RGB_MATRIX_DEFAULT_MODE RGB_MATRIX_SOLID_REACTIVE_SIMPLE // Default mode
 #define RGB_MATRIX_DEFAULT_HUE 0 // Default hue
 #define RGB_MATRIX_DEFAULT_SAT 0 // Default saturation
 #define RGB_MATRIX_DEFAULT_VAL 80 // Default brightness, 16 per step
@@ -66,5 +68,5 @@
 // Reactive effects respond to key releases (instead of key presses)
 #define RGB_MATRIX_KEYRELEASES
 
-/* Force NKRO on by default, can still be turned off with FN + N */
+// Force NKRO on by default, can still be turned off with FN + N
 #define NKRO_DEFAULT_ON true
